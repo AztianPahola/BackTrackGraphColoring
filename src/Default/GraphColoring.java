@@ -23,15 +23,18 @@ public class GraphColoring {
 		
 	}
 	
-	private int[] colorMap(int index){
+	private void colorMap(int index){
 		
 		int color;
 		
 		if (isPromising(index)){
-			if(index == numRegions)
+			if(index == numRegions) {
+				System.out.println("One possible color combination is as follows:");
 				for (int x : colors){
 					System.out.print(x + " ");
 				}
+				return;
+			}
 			else {
 				for(color = 1;color <= numColors;color++) {
 					colors[index] = color;
@@ -39,14 +42,27 @@ public class GraphColoring {
 				}
 			}
 		}
-		
-		
-		
-		
+			
 	}
 	
 	private boolean isPromising(int i) {
+		int j = 1;
+		boolean promising = true;
+		boolean exitFlag = false;
 		
+		while(j<i && !exitFlag) {
+			if(borderMatrix[i][j] > i || borderMatrix[i][j] == 0 ) {
+				exitFlag = true;
+			}
+			else {
+				if(colors[i] == colors[j]) {
+					promising = false;
+					exitFlag = true;
+				}
+			}
+			j++;
+		}
+		return promising;
 	}
 
 }
