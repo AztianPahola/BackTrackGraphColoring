@@ -15,12 +15,32 @@ public class GraphColoring {
 							 {1,3,5,0},
 							 {2,3,4,0}
 							 };
+	int numColors = 3;
+	int numRegions = borderMatrix.length;
+	int[] colors;
 	
 	public static void main(String[] args) {
 		
 	}
 	
-	private int[] colorMap(int numColors){
+	private int[] colorMap(int index){
+		
+		int color;
+		
+		if (isPromising(index)){
+			if(index == numRegions)
+				for (int x : colors){
+					System.out.print(x + " ");
+				}
+			else {
+				for(color = 1;color <= numColors;color++) {
+					colors[index] = color;
+					colorMap(index+1);
+				}
+			}
+		}
+		
+		
 		
 		
 	}
